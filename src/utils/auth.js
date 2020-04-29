@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'Admin-Token'
+const TokenKey = 'X-Tinymall-Token'
 
 export function getToken() {
   return Cookies.get(TokenKey)
