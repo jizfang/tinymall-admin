@@ -76,6 +76,109 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/goods',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    name: 'goodsManage',
+    meta: {
+      title: '商品管理',
+      icon: 'list'
+    },
+    children: [{
+        path: 'list',
+        component: () => import('@/views/goods/list'),
+        name: 'goodsList',
+        meta: {
+          perms: ['GET /admin/goods/list', 'POST /admin/goods/delete'],
+          title: '商品列表',
+          noCache: true
+        }
+      }, {
+        path: 'create',
+        component: () => import('@/views/goods/create'),
+        name: 'goodsCreate',
+        meta: {
+          perms: ['POST /admin/goods/create'],
+          title: '商品上架',
+          noCache: true
+        }
+      }, {
+        path: 'edit',
+        component: () => import('@/views/goods/edit'),
+        name: 'goodsEdit',
+        meta: {
+          perms: ['GET /admin/goods/detail', 'POST /admin/goods/update', 'POST /admin/goods/catAndBrand'],
+          title: '商品编辑',
+          noCache: true
+        },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: 'external-link',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    name: 'externalLink',
+    meta: {
+      title: '外链',
+      icon: 'link'
+    },
+    children: [{
+        path: 'https://cloud.tencent.com/product/cos',
+        meta: {
+          title: '腾讯云存储',
+          icon: 'link'
+        }
+      },
+      {
+        path: 'https://cloud.tencent.com/product/sms',
+        meta: {
+          title: '腾讯云短信',
+          icon: 'link'
+        }
+      },
+      {
+        path: 'https://pay.weixin.qq.com/index.php/core/home/login',
+        meta: {
+          title: '微信支付',
+          icon: 'link'
+        }
+      },
+      {
+        path: 'https://mpkf.weixin.qq.com/',
+        meta: {
+          title: '小程序客服',
+          icon: 'link'
+        }
+      },
+      {
+        path: 'https://www.alibabacloud.com/zh/product/oss',
+        meta: {
+          title: '阿里云存储',
+          icon: 'link'
+        }
+      },
+      {
+        path: 'https://www.qiniu.com/products/kodo',
+        meta: {
+          title: '七牛云存储',
+          icon: 'link'
+        }
+      },
+      {
+        path: 'http://www.kdniao.com/api-track',
+        meta: {
+          title: '快递鸟',
+          icon: 'link'
+        }
+      }
+    ],
+    hidden: true
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 
