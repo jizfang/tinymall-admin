@@ -101,7 +101,7 @@ export const asyncRoutes = [
         name: 'goodsCreate',
         meta: {
           perms: ['POST /admin/goods/create'],
-          title: '商品上架',
+          title: '新增商品',
           noCache: true
         }
       }, {
