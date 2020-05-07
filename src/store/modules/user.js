@@ -49,12 +49,16 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response
-        console.log(response)
+
         if (!data) {
           reject('Verification failed, please Login again.')
         }
 
-        const { roles, name, avatar, introduction } = data
+        const { roles, name, avatar, introduction, errmsg } = data
+        
+        if(errmsg){
+          reject(errmsg)
+        }
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
