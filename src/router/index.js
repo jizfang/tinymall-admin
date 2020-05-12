@@ -91,7 +91,6 @@ export const asyncRoutes = [
         component: () => import('@/views/goods/list'),
         name: 'goodsList',
         meta: {
-          perms: ['GET /admin/goods/list', 'POST /admin/goods/delete'],
           title: '商品列表',
           noCache: true
         }
@@ -109,7 +108,6 @@ export const asyncRoutes = [
         component: () => import('@/views/goods/edit'),
         name: 'goodsEdit',
         meta: {
-          perms: ['GET /admin/goods/detail', 'POST /admin/goods/update', 'POST /admin/goods/catAndBrand'],
           title: '商品编辑',
           noCache: true
         },
@@ -130,8 +128,29 @@ export const asyncRoutes = [
         name: 'brand',
         meta: {
           //perms: ['GET /admin/goods/detail', 'POST /admin/goods/update', 'POST /admin/goods/catAndBrand'],
-          icon: 'brand',
+          //icon: 'brand',
           title: '商品品牌管理',
+          noCache: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/order',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    name: 'orderManage',
+    meta: {
+      title: '订单管理',
+      icon: 'goods'
+    },
+    children: [{
+        path: 'list',
+        component: () => import('@/views/order/order'),
+        name: 'orderList',
+        meta: {
+          title: '订单列表',
           noCache: true
         }
       }
