@@ -84,7 +84,7 @@ export const asyncRoutes = [
     name: 'goodsManage',
     meta: {
       title: '商品管理',
-      icon: 'list'
+      icon: 'goods'
     },
     children: [{
         path: 'list',
@@ -114,6 +114,26 @@ export const asyncRoutes = [
           noCache: true
         },
         hidden: true
+      },
+      {
+        path: 'category',
+        component: () => import('@/views/goods/category'),
+        name: 'category',
+        meta: {
+          //perms: ['GET /admin/goods/detail', 'POST /admin/goods/update', 'POST /admin/goods/catAndBrand'],
+          title: '商品分类管理',
+          noCache: true
+        }
+      }, {
+        path: 'brand',
+        component: () => import('@/views/goods/brand'),
+        name: 'brand',
+        meta: {
+          //perms: ['GET /admin/goods/detail', 'POST /admin/goods/update', 'POST /admin/goods/catAndBrand'],
+          icon: 'brand',
+          title: '商品品牌管理',
+          noCache: true
+        }
       }
     ]
   },
