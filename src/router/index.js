@@ -143,7 +143,7 @@ export const asyncRoutes = [
     name: 'orderManage',
     meta: {
       title: '订单管理',
-      icon: 'goods'
+      icon: 'shopping'
     },
     children: [{
         path: 'list',
@@ -153,6 +153,25 @@ export const asyncRoutes = [
           title: '订单列表',
           noCache: true
         }
+      },
+      {
+        path: 'coupon',
+        component: () => import('@/views/order/coupon'),
+        name: 'coupon',
+        meta: {
+          title: '优惠券列表',
+          noCache: true
+        }
+      },
+      {
+        path: 'couponDetail',
+        component: () => import('@/views/order/couponDetail'),
+        name: 'couponDetail',
+        meta: {
+          title: '优惠券详情',
+          noCache: true
+        },
+        hidden: true
       }
     ]
   },
