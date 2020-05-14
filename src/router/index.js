@@ -56,6 +56,37 @@ export const constantRoutes = [
 
 export const asyncRoutes = [
   {
+    path: '/user',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    name: 'userManage',
+    meta: {
+      title: '用户管理',
+      icon: 'user'
+    },
+    children: [
+      {
+      path: 'list',
+      component: () => import('@/views/user/user'),
+      name: 'list',
+      meta: {
+        title: '用户列表',
+        noCache: true
+      }
+    },
+    {
+      path: 'address',
+      component: () => import('@/views/user/address'),
+      name: 'address',
+      meta: {
+        title: '地址列表',
+        noCache: true
+      }
+    }
+  ]
+  },
+  {
     path: '/ad',
     component: Layout,
     redirect: 'noredirect',
@@ -132,6 +163,16 @@ export const asyncRoutes = [
           title: '商品品牌管理',
           noCache: true
         }
+      },
+      {
+        path: 'comment',
+        component: () => import('@/views/goods/comment'),
+        name: 'goodsComment',
+        meta: {
+          perms: ['GET /admin/comment/list', 'POST /admin/comment/delete'],
+          title: '商品评论',
+          noCache: true
+        }
       }
     ]
   },
@@ -172,8 +213,113 @@ export const asyncRoutes = [
           noCache: true
         },
         hidden: true
+      }, {
+        path: 'topic',
+        component: () => import('@/views/order/topic'),
+        name: 'topic',
+        meta: {
+          perms: ['GET /admin/topic/list', 'POST /admin/topic/create', 'GET /admin/topic/read', 'POST /admin/topic/update', 'POST /admin/topic/delete'],
+          title: '专题管理',
+          noCache: true
+        }
+      }, {
+        path: 'topic-create',
+        component: () => import('@/views/order/topicCreate'),
+        name: 'topicCreate',
+        meta: {
+          perms: ['POST /admin/topic/create'],
+          title: '专题创建',
+          noCache: true
+        },
+        hidden: true
+      }, {
+        path: 'topic-edit',
+        component: () => import('@/views/order/topicEdit'),
+        name: 'topicEdit',
+        meta: {
+          perms: ['GET /admin/topic/read', 'POST /admin/topic/update'],
+          title: '专题编辑',
+          noCache: true
+        },
+        hidden: true
+      }, {
+        path: 'groupon-rule',
+        component: () => import('@/views/order/grouponRule'),
+        name: 'grouponRule',
+        meta: {
+          perms: ['GET /admin/groupon/list', 'POST /admin/groupon/create', 'POST /admin/groupon/update', 'POST /admin/groupon/delete'],
+          title: '团购规则',
+          noCache: true
+        }
+      }, {
+        path: 'groupon-activity',
+        component: () => import('@/views/order/grouponActivity'),
+        name: 'grouponActivity',
+        meta: {
+          perms: ['GET /admin/groupon/listRecord'],
+          title: '团购活动',
+          noCache: true
+        }
       }
     ]
+  }, 
+  {
+    path: '/sys',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    name: 'sysManage',
+    meta: {
+      title: '系统管理',
+      icon: 'systemManage'
+    },
+    children: [
+      {
+        path: 'wx',
+        component: () => import('@/views/sys/wx'),
+        name: 'wx',
+        meta: {
+          title: '微信列表',
+          noCache: true
+        }
+      },
+      {
+        path: 'region',
+        component: () => import('@/views/sys/region'),
+        name: 'region',
+        meta: {
+          title: '区域列表',
+          noCache: true
+        }
+      }, 
+      {
+        path: 'admin',
+        component: () => import('@/views/sys/admin'),
+        name: 'admin',
+        meta: {
+          title: '管理员',
+          noCache: true
+        }
+      }, 
+      {
+        path: 'role',
+        component: () => import('@/views/sys/role'),
+        name: 'role',
+        meta: {
+          title: '角色管理',
+          noCache: true
+        }
+      }, 
+      {
+        path: 'storage',
+        component: () => import('@/views/sys/storage'),
+        name: 'storage',
+        meta: {
+          title: '对象存储',
+          noCache: true
+        }
+      }
+  ]
   },
   {
     path: 'external-link',
