@@ -25,8 +25,6 @@
 
       <el-table-column align="center" min-width="400px" label="介绍" prop="desc"/>
 
-      <el-table-column align="center" label="底价" prop="floorPrice"/>
-
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button v-permission="['POST /admin/brand/update']" type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
@@ -35,7 +33,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
     <!-- 添加或修改对话框 -->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
@@ -57,9 +55,6 @@
             <img v-if="dataForm.picUrl" :src="dataForm.picUrl" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"/>
           </el-upload>
-        </el-form-item>
-        <el-form-item label="底价" prop="floorPrice">
-          <el-input v-model="dataForm.floorPrice"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -114,12 +109,11 @@ export default {
       total: 0,
       listLoading: true,
       listQuery: {
-        page: 1,
-        limit: 20,
+        pageNum: 1,
+        pageSize: 20,
         id: undefined,
         name: undefined,
-        sort: 'add_time',
-        order: 'desc'
+        sort: 'create_time desc'
       },
       dataForm: {
         id: undefined,
@@ -145,7 +139,7 @@ export default {
   computed: {
     headers() {
       return {
-        'X-Litemall-Admin-Token': getToken()
+        'X-Tinymall-Token': getToken()
       }
     }
   },
@@ -168,7 +162,7 @@ export default {
         })
     },
     handleFilter() {
-      this.listQuery.page = 1
+      this.listQuery.pageNum = 1
       this.getList()
     },
     resetForm() {
@@ -189,7 +183,7 @@ export default {
       })
     },
     uploadPicUrl: function(response) {
-      this.dataForm.picUrl = response.data.url
+      this.dataForm.picUrl = response.data.storageUrl
     },
     createData() {
       this.$refs['dataForm'].validate(valid => {

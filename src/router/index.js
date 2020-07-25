@@ -177,6 +177,65 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/template',
+    component: Layout,
+    redirect: 'noredirect',
+    alwaysShow: true,
+    name: 'templateManage',
+    meta: {
+      title: '规格参数模板',
+      icon: 'goods'
+    },
+    children: [{
+        path: 'list',
+        component: () => import('@/views/goods/template'),
+        name: 'templateList',
+        meta: {
+          title: '规格参数',
+          noCache: true
+        }
+      },
+      {
+        path: 'specList',
+        component: () => import('@/views/goods/spec'),
+        name: 'specList',
+        meta: {
+          title: '规格列表',
+          noCache: true
+        }
+      },
+      {
+        path: 'specEdit',
+        component: () => import('@/views/goods/specEdit'),
+        name: 'specEdit',
+        meta: {
+          title: '规格编辑',
+          noCache: true
+        },
+        hidden: true
+      },
+      {
+        path: 'paraList',
+        component: () => import('@/views/goods/para'),
+        name: 'paraList',
+        meta: {
+          title: '参数列表',
+          noCache: true
+        }
+      },
+      {
+        path: 'paraEdit',
+        component: () => import('@/views/goods/paraEdit'),
+        name: 'paraEdit',
+        meta: {
+          title: '参数编辑',
+          noCache: true
+        },
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/order',
     component: Layout,
     redirect: 'noredirect',
@@ -274,6 +333,15 @@ export const asyncRoutes = [
       icon: 'systemManage'
     },
     children: [
+      {
+        path: 'generator',
+        component: () => import('@/views/generator'),
+        name: 'generatoreList',
+        meta: {
+          title: '代码生成',
+          noCache: true
+        }
+      },
       {
         path: 'wx',
         component: () => import('@/views/sys/wx'),
